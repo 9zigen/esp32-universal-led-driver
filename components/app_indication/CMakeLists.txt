@@ -1,0 +1,5 @@
+idf_build_get_property(project_dir PROJECT_DIR)
+set(COMPONENT_SRCS 	"app_indication.c" "led_strip_encoder.c")
+set(COMPONENT_ADD_INCLUDEDIRS "./include")
+set(COMPONENT_REQUIRES driver app_settings)
+register_component()
