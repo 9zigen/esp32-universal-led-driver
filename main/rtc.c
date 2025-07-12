@@ -13,10 +13,10 @@
 #include <mcp7940.h>
 
 
-#include "sntp.h"
+#include "esp_sntp.h"
 #include "esp_log.h"
 #include "esp_system.h"
-#include "lwip/apps/sntp.h"
+// #include "lwip/apps/sntp.h"
 
 #include "rtc.h"
 #include "main.h"
@@ -36,10 +36,10 @@ static void time_sync_notification_cb(struct timeval *tv)
 static void initialize_sntp(services_t * config)
 {
   ESP_LOGI(TAG, "Initializing SNTP");
-  sntp_setoperatingmode(SNTP_OPMODE_POLL);
-  sntp_setservername(0, config->ntp_server);
+  esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+  esp_sntp_setservername(0, config->ntp_server);
   sntp_set_time_sync_notification_cb(time_sync_notification_cb);
-  sntp_init();
+  esp_sntp_init();
 }
 
 static void obtain_time(void)

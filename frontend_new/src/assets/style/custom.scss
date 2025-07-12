@@ -1,21 +1,5 @@
 @charset "utf-8";
-@import "../../../node_modules/bulma/sass/utilities/_all.sass";
-@import "../../../node_modules/bulma/sass/helpers/_all.sass";
-@import "../../../node_modules/bulma/sass/base/_all.sass";
-@import "../../../node_modules/bulma/sass/elements/button.sass";
-@import "../../../node_modules/bulma/sass/elements/container.sass";
-@import "../../../node_modules/bulma/sass/elements/title.sass";
-@import "../../../node_modules/bulma/sass/elements/tag.sass";
-@import "../../../node_modules/bulma/sass/elements/notification.sass";
-@import "../../../node_modules/bulma/sass/elements/box.sass";
-@import "../../../node_modules/bulma/sass/elements/progress.sass";
-@import "../../../node_modules/bulma/sass/form/all.sass";
-@import "../../../node_modules/bulma/sass/components/navbar.sass";
-//@import "../../../node_modules/bulma/sass/components/modal.sass";
-@import "../../../node_modules/bulma/sass/components/level.sass";
-@import "../../../node_modules/bulma/sass/grid/_all.sass";
-@import "../../../node_modules/bulma/sass/layout/section.sass";
-@import "../../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../../node_modules/bulma/bulma";
 
 @import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
@@ -35,22 +19,22 @@
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: $primary;
+      color: #2c3e50;
     }
   }
 }
 
 .is-active > .navbar-icon {
-  color: $green
+  //color: green;
 }
 
 .title {
   margin-top: 30px;
-  color: $light;
+  //color: $light;
 }
 
 .subtitle {
-  color: $grey;
+  //color: $grey;
 }
 
 .text-left {
@@ -87,10 +71,10 @@
 }
 
 .even {
-  background-color: lighten($grey, 30%);
+  //background-color: lighten($grey, 30%);
 }
 .odd {
-  background-color: lighten($grey, 45%);
+  //background-color: lighten($grey, 45%);
 }
 
 /* loading */
@@ -109,9 +93,9 @@
   width: 60px;
   height: 60px;
   margin: -40px 0 0 -40px;
-  border: 8px solid $light;
+  //border: 8px solid $light;
   border-radius: 50%;
-  border-top: 8px solid $warning;
+  //border-top: 8px solid $warning;
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.5s linear infinite;
 }

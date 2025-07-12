@@ -137,10 +137,11 @@ import eventBus from '@/eventBus'
 import { http } from '@/service/http'
 import { store } from "@/service/store"
 import Clock from '../../components/Ui/Clock'
+import ToggleSwitch from "@/components/Inputs/ToggleSwitch.vue";
 
 export default {
   name: 'Time',
-  components: { Clock },
+  components: {ToggleSwitch, Clock },
   data () {
     return {
       timeString: '',

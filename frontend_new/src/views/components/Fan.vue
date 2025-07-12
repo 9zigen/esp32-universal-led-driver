@@ -21,79 +21,122 @@
                     </div>
                 </div>
 
-                <!-- Start Temperature -->
+                <!-- PID Representation-->
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Start Temperature</label>
+                        <label class="label">PWM/PID</label>
                     </div>
                     <div class="field-body">
-                        <div class="field has-addons">
+                        <div class="field">
                             <div class="control">
-                                <input-number
-                                    v-model.number="state.cooling.start_temp"
-                                    class="input"
-                                    maxlength="2"
-                                    placeholder="Start Temperature"
+                                <toggle-switch
+                                    v-model="state.cooling.use_pid"
+                                    round
                                 />
                             </div>
-                            <p class="control">
-                                <a class="button is-static">
-                                    °C
-                                </a>
-                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Target Temperature -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Target Temperature</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field has-addons">
-                            <div class="control">
-                                <input-number
-                                    v-model.number="state.cooling.target_temp"
-                                    class="input"
-                                    maxlength="2"
-                                    placeholder="Target Temperature"
-                                />
+                <div v-if="state.cooling.use_pid">
+                    <!-- Start Temperature -->
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Start Temperature</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input-number
+                                        v-model.number="state.cooling.start_temp"
+                                        class="input"
+                                        maxlength="2"
+                                        placeholder="Start Temperature"
+                                    />
+                                </div>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        °C
+                                    </a>
+                                </p>
                             </div>
-                            <p class="control">
-                                <a class="button is-static">
-                                    °C
-                                </a>
-                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Target Temperature -->
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Target Temperature</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input-number
+                                        v-model.number="state.cooling.target_temp"
+                                        class="input"
+                                        maxlength="2"
+                                        placeholder="Target Temperature"
+                                    />
+                                </div>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        °C
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Max Temperature -->
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Max Temperature</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input-number
+                                        v-model.number="state.cooling.max_temp"
+                                        class="input"
+                                        maxlength="2"
+                                        placeholder="Target Temperature"
+                                    />
+                                </div>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        °C
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    <!-- PWM Percentage -->
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">PWM Duty</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input-number
+                                        v-model.number="state.cooling.pwm_duty"
+                                        class="input"
+                                        placeholder="PWM Duty"
+                                    />
+                                </div>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        %
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Max Temperature -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Max Temperature</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field has-addons">
-                            <div class="control">
-                                <input-number
-                                    v-model.number="state.cooling.max_temp"
-                                    class="input"
-                                    maxlength="2"
-                                    placeholder="Target Temperature"
-                                />
-                            </div>
-                            <p class="control">
-                                <a class="button is-static">
-                                    °C
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tahometer -->
+                <!-- Tachometer -->
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">FAN speed</label>
@@ -197,9 +240,12 @@
 <script>
 import eventBus from '@/eventBus'
 import { store } from "@/service/store";
+import ToggleSwitch from "@/components/Inputs/ToggleSwitch.vue";
+import InputNumber from "@/components/Inputs/InputNumber.vue";
 
 export default {
     name: 'Fan',
+    components: {InputNumber, ToggleSwitch},
     data () {
         return {
             state: store.state,
@@ -208,6 +254,7 @@ export default {
     },
     mounted () {
         this.loadFan()
+        console.log(this.state)
     },
     methods: {
         async saveFan () {

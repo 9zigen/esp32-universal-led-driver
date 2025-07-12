@@ -824,6 +824,16 @@ static esp_err_t settings_post_handler(httpd_req_t *req)
                 cooling->installed = false;
             }
 
+            cJSON *use_pid = cJSON_GetObjectItem(cooling_json, "use_pid");
+            if (cJSON_IsTrue(use_pid)) {
+                cooling->use_pid = true;
+            } else {
+                cooling->use_pid = false;
+            }
+
+            cJSON *pwm_duty = cJSON_GetObjectItem(cooling_json, "pwm_duty");
+            cooling->pwm_duty = pwm_duty->valueint;
+
             cJSON *start_temp = cJSON_GetObjectItem(cooling_json, "start_temp");
             cooling->start_temp = start_temp->valueint;
 
@@ -1660,6 +1670,8 @@ char * get_settings_json()
     cJSON * cooling_json = cJSON_CreateObject();
     cooling_t * cooling = get_cooling();
     cJSON_AddItemToObject(cooling_json, "installed", cJSON_CreateBool(cooling->installed));
+    cJSON_AddItemToObject(cooling_json, "use_pid", cJSON_CreateBool(cooling->use_pid));
+    cJSON_AddItemToObject(cooling_json, "pwm_duty", cJSON_CreateNumber(cooling->pwm_duty));
     cJSON_AddItemToObject(cooling_json, "start_temp", cJSON_CreateNumber(cooling->start_temp));
     cJSON_AddItemToObject(cooling_json, "target_temp", cJSON_CreateNumber(cooling->target_temp));
     cJSON_AddItemToObject(cooling_json, "max_temp", cJSON_CreateNumber(cooling->max_temp));

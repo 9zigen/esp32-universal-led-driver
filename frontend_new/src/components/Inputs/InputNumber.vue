@@ -51,15 +51,20 @@ export default {
         }
       },
       set: function (modifiedValue) {
-        // Recalculate value after ignoring '$' and ',' in user input
-        let newValue = parseFloat(modifiedValue.replace(/[^\d.]/g, ''))
-        // Ensure that it is not NaN
-        if (isNaN(newValue)) {
-          newValue = 0
-        }
-        // Note: we cannot set this.value as it is a 'prop'. It needs to be passed to parent component
-        // $emit the event so that parent component gets it
-        this.$emit('input', newValue)
+          let value = modifiedValue
+          if (typeof value !== 'string') {
+              value = value.toString()
+          }
+
+          // Recalculate value after ignoring '$' and ',' in user input
+          let newValue = parseFloat(value.replace(/[^\d.]/g, ''))
+          // Ensure that it is not NaN
+          if (isNaN(newValue)) {
+              newValue = 0
+          }
+          // Note: we cannot set this.value as it is a 'prop'. It needs to be passed to parent component
+          // $emit the event so that parent component gets it
+          this.$emit('input', newValue)
       }
     }
   },

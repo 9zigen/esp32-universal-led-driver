@@ -191,6 +191,8 @@ let services = {
 
 let cooling = {
   installed: true,
+  use_pid: false,
+  pwm_duty: 30,
   start_temp: 45,
   target_temp: 50,
   max_temp: 70,
@@ -245,7 +247,7 @@ let leds = [
     color: '#FB647A',
     duty_max: 255,
     power: 50,
-    sync_channel: 0,
+    sync_channel: true,
     sync_channel_group: 0,
     state: 1
   },
@@ -254,7 +256,7 @@ let leds = [
     color: '#6EB96E',
     duty_max: 255,
     power: 30,
-    sync_channel: 1,
+    sync_channel: true,
     sync_channel_group: 0,
     state: 1
   },
@@ -263,7 +265,7 @@ let leds = [
     color: '#42B8F3',
     duty_max: 255,
     power: 40,
-    sync_channel: 1,
+    sync_channel: true,
     sync_channel_group: 1,
     state: 1
   },
@@ -272,7 +274,7 @@ let leds = [
     color: '#b4d9f1',
     duty_max: 255,
     power: 40,
-    sync_channel: 0,
+    sync_channel: true,
     sync_channel_group: 1,
     state: 1
   },
@@ -281,7 +283,7 @@ let leds = [
     color: '#b4d9f1',
     duty_max: 255,
     power: 40,
-    sync_channel: 1,
+    sync_channel: true,
     sync_channel_group: 2,
     state: 1
   },
@@ -290,7 +292,7 @@ let leds = [
     color: '#b4d9f1',
     duty_max: 255,
     power: 40,
-    sync_channel: 1,
+    sync_channel: true,
     sync_channel_group: 1,
     state: 1
   },
@@ -299,7 +301,7 @@ let leds = [
     color: '#b4d9f1',
     duty_max: 255,
     power: 40,
-    sync_channel: 1,
+    sync_channel: true,
     sync_channel_group: 1,
     state: 1
   },
@@ -308,7 +310,7 @@ let leds = [
     color: '#b4d9f1',
     duty_max: 255,
     power: 0,
-    sync_channel: 1,
+    sync_channel: true,
     sync_channel_group: 1,
     state: 1
   }

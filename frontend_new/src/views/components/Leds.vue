@@ -114,12 +114,21 @@
                             <div class="field is-narrow">
                                 <div class="control">
                                     <toggle-switch
-                                        v-model.number="led.sync_channel"
+                                        v-model:checked="led.sync_channel"
                                         round
                                     />
                                 </div>
                             </div>
-                            <div v-show="led.sync_channel" class="field has-addons is-narrow">
+                        </div>
+                    </div>
+
+                    <!-- Sync Group ID -->
+                    <div class="field is-horizontal" v-show="led.sync_channel">
+                        <div class="field-label is-normal">
+                            <label class="label">Sync Group</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons is-narrow">
                                 <div class="control">
                                     <input
                                         v-model.number="led.sync_channel_group"
@@ -198,9 +207,11 @@
 <script>
 import { store } from "@/service/store";
 import eventBus from '../../eventBus'
+import ToggleSwitch from "@/components/Inputs/ToggleSwitch.vue";
 
 export default {
     name: 'Leds',
+    components: {ToggleSwitch},
     data () {
         return {
             state: store.state,

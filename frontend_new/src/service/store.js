@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import {getSettings, setSettings, getBattery, getSensors, getStatus} from "@/service/apiService";
+import {getSettings, setSettings, getStatus} from "@/service/apiService";
 
 export const store = {
   state: reactive({
@@ -21,6 +21,8 @@ export const store = {
     time: {},
     cooling: {
       installed: true,
+      use_pid: false,
+      pwm_duty: 30,
       start_temp: 45,
       target_temp: 50,
       max_temp: 70,
@@ -121,52 +123,6 @@ export const store = {
       this.state.errors.push("Failed to load Status");
       throw new Error("Failed to load Status");
     }
-  },
-
-  async loadSensors () {
-    try {
-      const response = await getSensors()
-      if (response.status === 200) {
-        this.state.sensors = [...response.data.sensors]
-      }
-    } catch (e) {
-      this.state.errors.push("Failed to load Sensors");
-      throw new Error("Failed to load Status");
-    }
-  },
-
-  async loadBattery () {
-    try {
-      const response = await getBattery()
-      if (response.status === 200) {
-        Object.assign(this.state, {
-          battery : response.data.battery
-        });
-      }
-    } catch (e) {
-      this.state.errors.push("Failed to load Battery");
-      throw new Error("Failed to load Battery");
-    }
-  },
-
-  setSensors (payload) {
-    this.state.sensors = JSON.parse(JSON.stringify(payload))
-  },
-
-  setSensorsValues (payload) {
-    const sensors = JSON.parse(JSON.stringify(payload));
-
-    if (this.state.sensors.length) {
-      this.state.sensors.forEach((v, index) => {
-          v.value = parseFloat(sensors[index].value);
-        })
-    } else {
-      this.state.sensors = [...sensors];
-    }
-  },
-
-  setBattery (payload) {
-    this.state.battery = JSON.parse(JSON.stringify(payload))
   },
 
   setTime (payload) {

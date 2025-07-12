@@ -1,9 +1,9 @@
 <template>
   <div class="container m-top-touch-navbar">
     <!-- Page Title -->
-    <div class="tile is-ancestor is-marginless">
-      <div class="tile is-parent">
-        <div class="tile is-child text-left">
+    <div class="grid is-marginless">
+      <div class="cell">
+        <div class="text-left">
           <h1 class="title">
             Dashboard
           </h1>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="tile is-ancestor is-marginless">
+    <div class="grid is-marginless">
       <!-- Wrapper -->
       <div class="tile is-vertical">
 
@@ -20,7 +20,7 @@
           <div class="tile is-vertical">
             <!-- Schedule chart -->
             <div class="tile is-vertical is-parent">
-              <article class="tile is-child box">
+              <article class="box">
                 <div class="content">
                   <p class="subtitle is-4">
                     Light Schedule
@@ -47,8 +47,8 @@
           <!-- Right col -->
           <div class="tile is-vertical">
             <!-- Light toggle -->
-            <div class="tile is-parent">
-              <article class="tile is-child box has-background-warning">
+            <div class="cell">
+              <article class="box has-background-warning">
                 <p class="subtitle is-4">
                   Light Channel control
                 </p>
@@ -94,8 +94,8 @@
               </article>
             </div>
             <!-- Light Channel status -->
-            <div class="tile is-parent">
-              <article class="tile is-child box">
+            <div class="cell">
+              <article class="box">
                 <p class="subtitle is-4">
                   Channels Power
                 </p>
@@ -119,8 +119,8 @@
         <div class="tile">
           <div class="tile is-vertical">
             <!-- Hardware Status -->
-            <div class="tile is-parent">
-              <article class="tile is-child notification bg-notification is-primary">
+            <div class="cell">
+              <article class="notification bg-notification is-primary">
                 <p class="title">
                   Hardware
                 </p>
